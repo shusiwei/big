@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChapterTrun</title>
+    <link rel="stylesheet" type="text/css" href="../../style/reset.css">
+    <!--[if lt IE 9]>
+        <script src="../../static/html5shiv.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .fixed{position:fixed;width:100px;height:120px;right:0;top:0;background:#fff;}
+        .fixed a{height:30px;line-height:30px;display:block;text-align:center;}
+        .fixed a.active{background-color:#f00;color:#fff;}
+        .p{height:800px;width:100%;}
+    </style>
+</head>
+<body>
+    <div class="fixed">
+        <a class="a">a</a>
+        <a class="b">b</a>
+        <a class="c">c</a>
+        <a class="d">d</a>
+    </div>
+    <div class="p p1" style="background-color:#eee"></div>
+    <div class="p p2" style="background-color:#999"></div>
+    <div class="p p3" style="background-color:#eee"></div>
+    <div class="p" style="background-color:#f00"></div>
+    <div class="p" style="background-color:#f00"></div>
+    <div class="p p4" style="background-color:#999"></div>
+    <div class="p" style="background-color:#f00"></div>
+    <script src="../../sea-2.3.0.min.js"></script>
+    <script src="../../sea.config.js"></script>
+    <script type="text/javascript">
+        seajs.use("./js/ChapterTrun");
+    </script>
+</body>
+</html>

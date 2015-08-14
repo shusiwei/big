@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>lazyLoad</title>
+    <link rel="stylesheet" type="text/css" href="../../style/reset.css">
+    <style type="text/css">
+    img{width:640px;}
+    </style>
+</head>
+<body>
+    <div class="img">
+        <ul class="clearfix">
+            <img data-lazy="carousel/1.jpg">
+            <img data-lazy="carousel/2.jpg">
+            <img data-lazy="carousel/3.jpg">
+            <img data-lazy="carousel/4.jpg">
+            <img data-lazy="img/img_05.jpg">
+            <img data-lazy="carousel/6.jpg">
+            <img data-lazy="img/img_07.jpg">
+            <img data-lazy="carousel/8.jpg">
+            <img data-lazy="carousel/9.jpg">
+            <img data-lazy="carousel/10.jpg">
+            <img data-lazy="carousel/11.jpg">
+        </ul>
+    </div>
+    <div class="img">
+        <ul class="clearfix">
+            <img data-lazy="carousel/1.jpg">
+            <img data-lazy="carousel/2.jpg">
+            <img data-lazy="carousel/3.jpg">
+            <img data-lazy="carousel/4.jpg">
+            <img data-lazy="img/img_05.jpg">
+            <img data-lazy="carousel/6.jpg">
+            <img data-lazy="img/img_07.jpg">
+            <img data-lazy="carousel/8.jpg">
+            <img data-lazy="carousel/9.jpg">
+            <img data-lazy="carousel/10.jpg">
+            <img data-lazy="carousel/11.jpg">
+        </ul>
+    </div>
+    <input class="img">
+    <img class="img a" data-lazy="carousel/1.jpg">
+    <img class="img b" data-lazy="carousel/2.jpg">
+    <img class="img c" data-lazy="">
+    <img class="img d">
+	<script src="../../sea-2.3.0.min.js"></script>
+	<script src="../../sea.config.js"></script>
+	<script type="text/javascript">
+		seajs.use("./js/lazyLoad")
+	</script>
+</body>
+</html>

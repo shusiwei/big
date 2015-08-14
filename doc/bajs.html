@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Big (1.0) 开发文档</title>
+        <link href="files/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="sidebar" class="interface">
+            <a class="toc_title" href="#">Big<span class="version">(1.0)</span></a>
+            <a class="toc_title" href="#introduction">介绍(Introduction)</a>
+            <a class="toc_title" href="#install">安装(Install)</a>
+            <a class="toc_title" href="#initialization">初始化 (Initialization)</a>
+            <a class="toc_title" href="#specification">开发规范(specification)</a>
+            <a class="toc_title" href="#changelog">更新日志 (Change Log)</a>
+            <a class="toc_title" href="#event">事件(Event)</a>
+            <ul class="toc_section">
+                <li>- <a href="#onResize">onResize</a></li>
+                <li>- <a href="#onScroll">onScroll</a></li>
+                <li>- <a href="#onChange">onChange</a></li>
+            </ul>
+            <a class="toc_title" href="#utility">功能(Utility)</a>
+            <ul class="toc_section">
+                <li>- <a href="#updateConfig">updateConfig</a></li>
+                <li>- <a href="#getAddress">getAddress</a></li>
+            </ul>
+            <a class="toc_title" href="#collections">集合(Collections)</a>
+            <ul class="toc_section">
+                <li>- <a href="#size">size</a></li>
+                <li>- <a href="#host">host</a></li>
+                <li>- <a href="#elem">elem</a></li>
+                <li>- <a href="#info">info</a></li>
+                <li>- <a href="#regex">regex</a></li>
+                <li>- <a href="#config">config</a></li>
+                <li>- <a href="#api">api</a></li>
+            </ul>
+            <a class="toc_title" href="#library">方法(Library)</a>
+            <ul class="toc_section">
+                <li>- <a href="#each">each</a></li>
+                <li>- <a href="#isType">isType</a></li>
+                <li>- <a href="#inObject">inObject</a></li>
+                <li>- <a href="#indexOf">indexOf</a></li>
+                <!-- <li>- <a href="#isEmpty">isEmpty</a></li> -->
+                <li>- <a href="#mergeJSON">mergeJSON</a></li>
+                <!-- <li>- <a href="#HexToRGB">HexToRGB</a></li>
+                <li>- <a href="#RGBToHex">RGBToHex</a></li> -->
+                <li>- <a href="#getRandom">getRandom</a></li>
+                <li>- <a href="#getRange">getRange</a></li>
+                <li>- <a href="#checkIE">checkIE</a></li>
+                <li>- <a href="#getSize">getSize</a></li>
+                <li>- <a href="#getFixed">getFixed</a></li>
+                <li>- <a href="#getEasing">getEasing</a></li>
+                <li>- <a href="#getSelecet">getSelecet</a></li>
+                <li>- <a href="#getQuery">getQuery</a></li>
+                <li>- <a href="#resetTime">resetTime</a></li>
+                <li>- <a href="#getZIndex">getZIndex</a></li>
+                <li>- <a href="#getVisibles">getVisibles</a></li>
+                <li>- <a href="#getCSS3Name">getCSS3Name</a></li>
+                <li>- <a href="#inViewport">inViewport</a></li>
+            </ul>
+            <a class="toc_title" href="#ui">视图(View)</a>
+            <ul class="toc_section">
+                <li>- <a href="#toggleBlur">toggleBlur</a></li>
+                <li>- <a href="#keepFull">keepFull</a></li>
+                <li>- <a href="#listSplit">listSplit</a></li>
+                <li>- <a href="#hoverFade">hoverFade</a></li>
+                <li>- <a href="#pageScroll">pageScroll</a></li>
+                <li>- <a href="#setFixed">setFixed</a></li>
+                <li>- <a href="#setPlaceholder">setPlaceholder</a></li>
+                <li>- <a href="#insertQRcode">insertQRcode</a></li>
+                <li>- <a href="#LazyLoad">LazyLoad</a></li>
+                <li>- <a href="#CycleLoader">CycleLoader</a></li>
+                <li>- <a href="#ToggleTab">ToggleTab</a></li>
+                <li>- <a href="#EasingTab">EasingTab</a></li>
+                <li>- <a href="#Carousel">Carousel</a></li>
+                <li>- <a href="#EasySlider">EasySlider</a></li>
+                <li>- <a href="#ScrollFollow">ScrollFollow</a></li>
+                <li>- <a href="#HtmlSplit">HtmlSplit</a></li>
+                <li>- <a href="#LightGallery">LightGallery</a></li>
+                <li>- <a href="#LightPopup">LightPopup</a></li>
+                <li>- <a href="#ChapterTrun">ChapterTrun</a></li>
+                <!-- <li>- <a href="#Swiper">Swiper</a></li> -->
+            </ul>
+            <a class="toc_title" href="#component">组件(Component)</a>
+            <ul class="toc_section">
+                <li>- <a href="#DatePicker">DatePicker</a></li>
+                <li>- <a href="#ScrollTop">ScrollTop</a></li>
+                <!-- <li>- <a href="#ShareTips">ShareTips</a></li> -->
+            </ul>
+            <a class="toc_title" href="#extend">扩展(Extend)</a>
+            <ul class="toc_section">
+                <li>- <a href="#AjaxForm">AjaxForm</a></li>
+                <li>- <a href="#DragAPI">DragAPI</a></li>
+                <li>- <a href="#WechatAPI">WechatAPI</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="introduction" id="introduction">
+                <p><img id="logo" src="files/logo.png"></p>
+                <p>本文档为Big (1.0) 开发文档</p>
+                <hr>
+                <p><b>Big</b>是一个为了解决目前项目中越来越复杂的前端项目中而开发的一套完整的JavaScript库。</p>
+                <p>为了尽可能地优化网站项目后期的维护性，Big 引入、加载依赖于<a href="http://seajs.org/docs/" class="b" target="_blank">sea.js</a>。</p>
+                <p><a href="http://seajs.org/docs/" class="b" target="_blank">sea.js</a>是一个遵循CommonJS(CMD)规范的JavaScript模块加载框架，可以实现JavaScript的模块化开发及加载机制。与jQuery等JavaScript框架不同，SeaJS不会扩展封装语言特性，而只是实现JavaScript的模块化及按模块加载。</p>
+                <p><b>Big</b>代码执行高度依赖<b>jQuery</b>。</p>
+                <p><b>Big</b>总共包含8种类型的模块，共包括<b>Event(事件)</b>、<b>Utility(功能)</b>、<b>Collection(集合)</b>、<b>Library(方法)</b>、<b>View(功能)</b>、<b>Component(组件 [项目么有组件/公共组件] )</b>、<b>Extend(扩展)</b>。</p>
+                <p><b>Event</b>，事件集合，为Big自身提供的基础的用户事件方法；</p>
+                <p><b>Utility</b>，功能集合，实现功能、获取/更新内、外部数据的方法集合；</p>
+                <p><b>Collection</b> <tt>Big.coll</tt>，由Big自身内部获取的数据集合</p>
+                <p><b>Library</b> <tt>Big.lib</tt>，常用的方法集合；</p>
+                <p><b>UI</b> <tt>Big.ui</tt>，常用的UI、视图功能处理模块；</p>
+                <p><b>Component</b> <tt>Big.com</tt>，已经构建好的组件，可直接调用；</p>
+                <p><b>Extend</b> <tt>Big.ext</tt>，对Big做出的功能扩展，为第三方功能模块提供支持;</p>
+                <p><b>Cache</b> <tt>Big.cache</tt>，页面上的事件/元素/方法缓存。</p>
+            </div>
+            <div id="install">
+                <h2>安装 (Install)</h2>
+                <ul>
+                    <li>引入sea.js文件；</li>
+                    <li>引入sea.config.js文件(seajs的配置文件)；</li>
+                    <li>(如果需要sea可以加载css文件，则需引入sea.css.js文件，目前此文件已经与sea.js文件合并，无需另外引入)；</li>
+                    <li>使用sea.use方法引入页面文件所应用的js文件（一般推荐一个页面独立一个JS文件，不同的页面引用不同的JS文件）。</li>
+                </ul>
+            </div>
+            <div id="initialization">
+                <h2>初始化 (Initialization)</h2>
+                <p>因为Big依赖sea.js，而sea.js遵守CMD编码规范，所以页面文件统一要遵守CMD规范；</p>
+                <p>下面为sea的编码规范示例：<a href="/project/example/cmd.html" target="_blank">CMD规范</a></p>
+                <pre>
+<s>// 所有模块都通过 define 来定义</s>
+define(function(require, exports, module) {
+    var $ = require('jquery'),      <s>// 引用jQuery</s>
+        Big = require('big')($[, options]);  <s>// jQuery加载完成后，自动执行Big</s>
+
+    <s>// 或者通过 module.exports 提供整个接口</s>
+    module.exports = {
+        example : function() {
+            alert('Big加载完成！');
+            console.log(Big);
+        }
+    }
+
+    $(function() {
+        module.exports.example();
+    });
+})</pre>
+                <p>在sea.js的加载方式中，Big需要两个参数，其中第一个参数为jQuery，第二个参数为可选项</p>
+                <pre>(
+    $ : jQuery,           <s>// 必填，jQuery</s>
+    options : {           <s>// 选填，选项</s>
+        onReady : function      <s>// 选填，Big就绪时执行的回调</s>
+        config : json           <s>// 选填，Big中的参数</s>
+    }
+)</pre>
+            </div>
+            <div id="specification">
+                <h2>开发规范 (specification)</h2>
+                <ul>
+                    <h3>方法参数规则（通常意义）</h3>
+                    <ul>
+                        <li><b>param</b> json格式，方法中的必填参数</li>
+                        <li><b>option</b> json格式，方法中的可选选项</li>
+                        <li><b>target</b> jQuery选择器，控制(包含事件)/被控制(被事件改变)的元素</li>
+                        <li><b>control</b> jQuery选择器，控制某个事件的元素</li>
+                        <li><b>content/column</b> jQuery选择器，一个/多个被包含、处理的内容元素</li>
+                        <li><b>handler</b> function，必须存在的方法</li>
+                        <li><b>callback</b> function，可选的事件回调</li>
+                        <li><b>onReady</b> function，准备就绪时的回调</li>
+                        <li><b>onChange</b> function，改变时的回调</li>
+                        <li><b>onChangeStart</b> function，改变开始时的回调（通常会回传两个参数[当前的索引,下一个索引]）</li>
+                        <li><b>onChangeEnd</b> function，改变结束时的回调（通常会回传两个参数[当前的索引,上一个索引]）</li>
+                        <li><b>onShow</b> function，展开显示某个元素后的回调</li>
+                        <li><b>onChangeEnd</b> function，收起隐藏某个元素时的回调</li>
+                        <li><b>wrapper</b> jQuery选择器，容器</li>
+                        <li><b>event</b> string，事件名称</li>
+                        <li><b>active</b> number(index)，默认的索引</li>
+                        <li><b>ease</b> string(easing)，动画的缓动效果</li>
+                        <li><b>delay</b> number，某个计时器，通常作为一个循环的延时</li>
+                        <li><b>time</b> number，某个计时器</li>
+                        <li><b>loop</b> boolean，是否循环</li>
+                        <li><b>autoplay</b> boolean/millisecond，是否自动执行/自动播放的时间间隔</li>
+                        <li><b>easing</b> string(sting)，缓动效果</li>
+                        <li><b>display</b> boolean，是否显示</li>
+                        <li><b>style</b> string，样式名</li>
+                        <li><b>width/height</b> number，宽度/高度</li>
+                        <li><b>prop</b> json，属性，通常属性下标与原生JS成品属性名称一致，如果成员不存在，那么属性名称为自定义</li>
+                    </ul>
+                    <h3>参数类型</h3>
+                    <ul>
+                        <li><b>number</b> index/number/millisecond</li>
+                        <li><b>string</b> easing/style</li>
+                        <li><b>json</b> json</li>
+                        <li><b>array</b> array</li>
+                        <li><b>function</b> function</li>
+                        <li><b>regex</b> regex</li>
+                    </ul>
+                    <h3>样式命名规范</h3>
+                    <ul>
+                        <li>所有应该某个方法的元素，都应该为其加上特定的class名称，通常样式名称为“-xxx-xxx”</li>
+                        <li>内容包围盒子元素应该以-wrapper结尾</i></li>
+                        <li>内容包围主体元素应该以-container结尾</i></li>
+                        <li>内容容器盒子元素应该以-content结尾</li>
+                        <li>控制元素应该以-nav结尾，前后切换按钮应该另加上'prev-btn'/'next-btn'</li>
+                        <li>分页容器元素应该以-pagination结尾</li>
+                    </ul>
+                    <h3>代码书写规范</h3>
+                    <ul>
+                        <li>页面样式名遵守驼峰式规则即 className，js咐加的样式名遵守连接线规则即 class-name</li>
+                        <li>所有的var定义使用连续定义，定义分割使用","逗号，结束时加";"分号，如：var a = 1,b = 2,c = 3;</li>
+                        <li>所有的";"分号必须加上</li>
+                        <li>不能省略"{"、"}"，必须写上</li>
+                        <li>所有的运算符之间必须用" "空格格开</li>
+                        <li>json下标尽量不要用双引号、单引号，json最后一个值后面不要带","逗号</li>
+                        <li>jQuery元素请用$开头命名，如 var $box = $('.box');</li>
+                        <li>方法参数、数组等连续值请用" "空格格开，如：['1', '2', '3']、(param, options)</li>
+                        <li>经常使用的变量必须事先声明，方便调用存取</li>
+                    </ul>
+                    <h3>注意事项</h3>
+                    <ul>
+                        <li class="b r">不要人为添加任何全局变量，即定义变量时必使用var开头</li>
+                        <li class="b r">以大写字母开头的方法都需要使用 new 操作符进行构建</li>
+                        <li class="b r">Big不支持外部调取，如有特殊需要，请在CMD中使用window.Big = Big，以达到外部调取</li>
+                    </ul>
+                </ul>
+            </div>
+            <div id="event">
+                <h2>Event <tt>Big.evt</tt> (事件)</h2>
+                <div class="block">
+                    <p id="onResize">
+                        <b class="header">onResize</b><code>Big.evt.onResize(handler)</code></span>
+                    </p>
+                    <p>窗口尺寸变化时，执行某个事件</p>
+                    <p>
+                        <pre>
+(
+    handler : function   <s>// 必填，窗口尺寸变化执行的事件</s>
+)
+                        </pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="onScroll">
+                        <b class="header">onScroll</b><code>Big.evt.onScroll(handler)</code></span>
+                    </p>
+                    <p>窗口滚动条滚动时，执行某个事件</p>
+                    <p>
+                        <pre>
+(
+    handler : function   <s>// 必填，窗口滚动条滚动时执行的事件</s>
+)
+                        </pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="onChange">
+                        <b class="header">onChange</b><code>Big.evt.onChange(handler)</code></span>
+                    </p>
+                    <p>窗口变化时（滚动与尺寸变化），执行某个事件</p>
+                    <p>
+                        <pre>
+(
+    handler : function   <s>// 必填，窗口变化时执行的事件</s>
+)
+                        </pre>
+                    </p>
+                </div>
+            </div>
+            <div id="event">
+                <h2>Get <tt>Big.get</tt> (获取)</h2>
+                <div class="block">
+                    <p id="updateConfig">
+                        <b class="header">updateConfig</b><code>Big.util.updateConfig(options)</code></span>
+                    </p>
+                    <p>更新Big.coll.config中的数据</p>
+                    <p>
+                        <pre>
+(
+    options {              <s>// 选填，选项</s>
+        cfg : json              <s>// 选填，新的config数据</s>
+        callback : function     <s>// 选填，更新配置文件后的回调，回调参数为最新的Big.config</s>
+    }
+)
+                        </pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="getAddress">
+                        <b class="header">getAddress</b><code>Big.util.getAddress(data, callback)</code></span>
+                    </p>
+                    <p>根据IP地址请求实际的物理地址（基于百度地图：IP定位API）</p>
+                    <p><i>http://developer.baidu.com/map/index.php?title=webapi/ip-api</i></p>
+                    <p>
+                        <pre>
+(
+    data : {             <s>// 必填，选项</s>
+        ak : string，          <s>// 必填，在lbs云官网注册的access key，作为访问的依据，请使用统一的AK</s>
+        ip : string,           <s>// 选填，IP地址，ip不出现，或者出现且为空字符串的情况下，会使用当前访问者的IP地址作为定位参数</s>
+        sn : string，          <s>// 选填，用户的权限签名，若用户所用ak的校验方式为sn校验时该参数必须。（<a href="http://developer.baidu.com/map/index.php?title=lbscloud/api/appendix" target="_blank">sn生成算法</a>）</s>
+        coor : string          <s>// 选填，输出的坐标格式，coor不出现时，默认为百度墨卡托坐标；coor=bd09ll时，返回为百度经纬度坐标</s>
+    },
+    callback : function  <s>// 必填，成功请求到地址后的回调，回调参数为data</s>
+)</pre>
+                    </p>
+                </div>
+            </div>
+            <div id="collections">
+                <h2>Collection <tt>Big.coll</tt> (数据集合)</h2>
+                <div class="block">
+                    <p id="size">
+                        <b class="header">size</b> <tt>Big.size</tt> 屏幕相关的数值 <code>json</code></span>
+                    </p>
+                    <pre>{
+    width : number,       <s>// 窗口宽度</s>
+    height : number,      <s>// 窗口高度</s>
+    docWidth : number,    <s>// 文档宽度</s>
+    docHeight : number,   <s>// 文档高度</s>
+    left : number,        <s>// 横向滚动条的位置</s>
+    top : number          <s>// 纵向滚动条的位置</s>
+}</pre>
+                </div>
+                <div class="block">
+                    <p id="host">
+                        <b class="header">host</b> <tt>Big.host</tt> 页面与主机相关参数 <code>json</code></span>
+                    </p>
+                    <pre>{
+    domain : array,    <s>// 域名的数组集合</s>
+    host : string,     <s>// 主机名和当前 URL 的端口号</s>
+    hostname : string, <s>// 主机名称</s>
+    href : string,     <s>// 当前URL地址</s>
+    origin : string,   <s>// 包含协议的URL域名前缀</s>
+    pathname : string, <s>// 当前URL的路径部分</s>
+    port : string,     <s>// 当前URL的端口号</s>
+    protocol : string, <s>// 当前URL的协议</s>
+    query : array,     <s>// URL查询参数数组集合</s>
+    search : string    <s>// 从问号(?)开始的URL（查询部分）</s>
+}</pre>
+                </div>
+                <div class="block">
+                    <p id="elem">
+                        <b class="header">elem</b> <tt>Big.elem</tt> 常用的元素节点 <code>json</code></span>
+                    </p>
+                    <pre>{
+    $scroll : selector     <s>// 页面滚动元素</s>
+    blur : {               <s>// 被模糊化的元素，通过ui.toggleBlur方法进行存、取、删</s>
+        id : []                  <s>保存被模糊化的元素，方便后期为取消模糊时以ID索引进行查找</s>
+    },
+    lazy : {               <s>// 延时加载对象，通过ui.LazyLoad方法进行存、取、删</s>
+        id : []                  <s>保存正大执行延时加载的对象，方便后期为操作时以ID索引进行查找</s>
+    }
+}</pre>
+                </div>
+                <div class="block">
+                    <p id="info">
+                        <b class="header">info</b> <tt>Big.info</tt> 其它信息 <code>json</code></span>
+                    </p>
+                    <pre>{
+    address : {         <s>// 由IP地址取得的真实物理地址</s>
+        address : string,     <s>// 地址</s>
+        province : string,    <s>// 省份</s>
+        city : string,        <s>// 城市</s>
+        district : string,    <s>// 街道</s>
+        point : {             <s>// 坐标</s>
+            x : number,             <s>// 经度</s>
+            y : number              <s>// 纬度</s>
+        }
+    },
+    browser : {         <s>// 浏览器信息</s>
+        ie6 : boolean,      <s>// 是否为IE6</s>
+        kernel : string     <s>// 浏览器内核版本</s>
+        name : string,      <s>// 浏览器名称</s>
+        version : number    <s>// 浏览器版本号</s>
+    },
+    os : {              <s>// 当前URL地址</s>
+        name : string,      <s>// 操作系统名称</s>
+        version : number    <s>// 操作系统版本号</s>
+    }
+}</pre>
+                </div>
+                <div class="block">
+                    <p id="regex">
+                        <b class="header">regex</b> <tt>Big.regex</tt> 正则集合 <code>json</code></span>
+                    </p>
+                    <pre>{
+    cell : regex,       <s>// 手机号码</s>
+    date : regex,       <s>// 日期</s>
+    email : regex,      <s>// 电子邮箱</s>
+    hex : regex,        <s>// hex格式颜色</s>
+    tel : regex,        <s>// 座机电话号码</s>
+    phone : regex,        <s>// 座机电话&手机号码</s>
+    uname : regex,      <s>// 用户名</s>
+    year : regex        <s>// 年份</s>
+}</pre>
+                </div>
+                <div class="block">
+                    <p id="config">
+                        <b class="header">config</b> <tt>Big.config</tt> 配置信息 <code>json</code></span>
+                    </p>
+                    <pre>{}</pre>
+                </div>
+                <div class="block">
+                    <p id="api">
+                        <b class="header">api</b> <tt>Big.coll.api</tt> 接口信息 <code>json</code></span>
+                    </p>
+                    <pre>{
+    api : {             <s>// 接口参数集合</s>
+        BaiduMap : {    <s>// 百度地图API参数集合</s>
+            ak : 'LkoNI5D9hraBPCZwW3Lgc7n3'         <s>// 密钥，作为访问服务的依据</s>
+        },
+        Wechat : {      <s>// 微信API参数集合</s>
+            qrurl : 'http://weixin.qq.com/r/'       <s>// 公从账号二维码的url前缀</s>
+        }
+    }
+}</pre>
+                </div>
+            </div>
+            <div id="library">
+                <h2>Library <tt>Big.lib</tt> (常用的方法集合)</h2>
+                <div class="block">
+                    <p id="each">
+                        <b class="header">each</b><code>Big.each(obj, callback)</code></span>
+                    </p>
+                    <p>对一个对象进行遍历，并通过callback方法回传<em>索引</em>及<em>值</em></p>
+                    <pre>(
+    obj : number/json/array/nodelist,     <s>// 必填，遍历次数/json/数组/节点列表等</s>
+    callbcak : function                   <s>// 必填，回调索引/值</s>
+)</pre>
+                    <pre>
+var number = 9,
+    time = ['15:30', '16:50', '22:00'],
+    style = {
+        width : 200,
+        height : 50,
+        opacity : 0.5
+    };
+
+each(number, function(index) {});          <s>// 0</s>
+each(time, function(index, value));     <s>// 0, 15:30</s>
+each(style, function(key, value));       <s>// width, 200</s>
+                </div>
+                <div class="block">
+                    <p id="isType">
+                        <b class="header">isType</b><code>Big.isType(type, obj)</code></span>
+                    </p>
+                    <p>验证一个对象是否为某一个类型，如果验证通过，则返回<em>true</em>，反之则返回<em>false</em></p>
+                    <pre>(
+    type : string,     <s>// 必填，类型名称(json/array/element/function/number/string/boolean/nodelist/event/hexcolor/username/phone/cellphone/telphone/email)</s>
+    obj : object       <s>// 必填，验证的对象</s>
+)</pre>
+                    <pre>
+var username = '张三',
+    time = ['15:30', '16:50', '22:00'];
+
+isType('string', username);       <s>// true</s>
+isType('array', username);        <s>// false</s>
+
+isType('json', time);             <s>// false</s>
+isType('array', time);            <s>// true</s></pre>
+                </div>
+                <div class="block">
+                    <p id="inObject">
+                        <b class="header">inObject</b><code>Big.inObject(obj, value)</code></span>
+                    </p>
+                    <p>验证某个值是否包含在一个对象当中，如果验证通过，则返回<em>true</em>，反之则返回<em>false</em></p>
+                    <pre>(
+    obj : obj,                <s>// 必填，要进行验证的对象</s>
+    value : object            <s>// 必填，要进行验证的值</s>
+)</pre>
+                    <pre>
+var name = '张三',
+    style = {
+        width : 100,
+        height : 125,
+        opacity : 1,
+        color : '#fff'
+    },
+    prop = ['10086', '18:30', style, 'http://www.google.com/'];
+
+inObject('array', prop, style);   <s>// true</s>
+inObject('string', name, '刘');   <s>// false</s></pre>
+                </div>
+                <div class="block">
+                    <p id="indexOf">
+                        <b class="header">indexOf</b><code>Big.indexOf(obj, value)</code></span>
+                    </p>
+                    <p>返回某个值、字符串在某个对象、字符串中的索引，如果不存在，则返回<em>-1</em></p>
+                    <pre>(
+    obj : obj,                <s>// 必填，要进行验证的对象</s>
+    value : object            <s>// 必填，要进行验证的值</s>
+)</pre>
+                    <pre>
+var name = '张三',
+    style = {
+        width : 100,
+        height : 125,
+        opacity : 1,
+        color : '#fff'
+    },
+    prop = ['10086', '18:30', style, 'http://www.google.com/'];
+
+indexOf(prop, style);     <s>// 2</s>
+indexOf(name, '刘');      <s>// -1</s>
+</pre>
+                </div>
+                <!-- <div class="block">
+                    <p id="isEmpty">
+                        <b class="header">isEmpty</b><code>Big.isEmpty(str, value)</code></span>
+                    </p>
+                    <p>验证一个对象为空或等于某个对象，如果验证通过，则返回<em>true</em>，反之则返回<em>false</em></p>
+                    <pre>(
+    str : string,        <s>// 必填，验证的字符串</s>
+    value : string,      <s>// 选填，对比的字符串</s>
+)</pre>
+                    <pre>
+var username = '张三',
+    sex,
+    time = ['15:30', '16:50', '22:00'];
+
+isEmpty(username);            <s>// false</s>
+isEmpty(sex);                 <s>// true</s>
+
+isEmpty(username, '张三');    <s>// false</s></pre>
+                </div> -->
+                <div class="block">
+                    <p id="mergeJSON">
+                        <b class="header">mergeJSON</b><code>Big.mergeJSON(json, original)</code></span>
+                    </p>
+                    <p>合并两组json，并返回<em>原始json数据</em></p>
+                    <pre>(
+    json : json,      <s>// 必填，新的json数据</s>
+    original : json     <s>// 必填，原始的json数据</s>
+)</pre>
+                    <pre>
+var nan = {
+        '张三',
+        '李四',
+        '王五',
+        age : {
+            a : 18,
+            b : 17,
+            c : 16
+        }
+    },
+    nv = {
+        '小红',
+        '小青',
+        age : {
+            e : 17,
+            f : 18
+        }
+    };
+
+mergeJSON(nan, nv);  <s>// {
+                            '张三',
+                            '李四',
+                            '王五',
+                            '小红',
+                            '小青',
+                            age : {
+                                a : 18,
+                                b : 17,
+                                c : 16,
+                                e : 17,
+                                f : 18
+                            }
+                        }</s></pre>
+                </div>
+                <!-- <div class="block">
+                    <p id="HexToRGB">
+                        <b class="header">HexToRGB</b><code>Big.HexToRGB(hex)</code></span>
+                    </p>
+                    <p>将一个16进制色（Hex）进行转换，并返回<em>一个RGB色</em></p>
+                    <pre>(
+    hex : string(hex)      <s>// 必填，要进行进行转换的16进制色</s>
+)</pre>
+                    <pre>
+var white = '#ffffff';
+
+HexToRGB(white);  <s>// 'rgb(255, 255, 255)'</s></pre>
+                </div>
+                <div class="block">
+                    <p id="RGBToHex">
+                        <b class="header">RGBToHex</b><code>Big.RGBToHex(rgb)</code></span>
+                    </p>
+                    <p>将一个RGB颜色进行转换，并返回<em>一个16进制色(Hex)</em></p>
+                    <pre>(
+    rgb : string(rgb)      <s>// 必填，要进行进行转换的RGB色</s>
+)</pre>
+                    <pre>
+var white = 'rgb(255, 255, 255)';
+
+RGBToHex(white);  <s>// '#ffffff'</s></pre>
+                </div> -->
+                <div class="block">
+                    <p id="getRandom">
+                        <b class="header">getRandom</b><code>Big.getRandom()</code></span>
+                    </p>
+                    <p>返回一个<em>随机整数</em></p>
+                    <pre>
+getRandom();           <s>// 36549872448</s></pre>
+                </div>
+                <div class="block">
+                    <p id="getRange">
+                        <b class="header">getRange</b><code>Big.getRange(min, max)</code></span>
+                    </p>
+                    <p>在两个数之间得到一个范围, 并返回一个<em>随机整数</em></p>
+                    <pre>(
+    min : number,      <s>// 必填，最小范围</s>
+    max : number       <s>// 必填，最大范围</s>
+)</pre>
+                    <pre>
+
+getRange(40, 80);  <s>// 67</s></pre>
+                </div>
+                <!-- <div class="block">
+                    <p id="moveData">
+                        <b class="header">moveData</b><code>Big.moveData(newItem, oldItem)</code></span>
+                    </p>
+                    <p>将一个localStorage的数据移动到另一个localStorage，并将旧的销毁</p>
+                    <p><i>备注：这是一个基于HTML5的方法</i></p>
+                    <pre>(
+    newItem : string,      <s>// 必填，新的localStorage名称</s>
+    oldItem : string       <s>// 必填，旧的localStorage名称</s>
+)</pre>
+                    <pre>
+localStorage.name = '张三';
+
+moveData('sex', 'name');
+
+console.log(localStorage.name);    <s>// undefined</s>
+console.log(localStorage.sex);     <s>// '张三'</s>
+</pre>
+                </div>
+                <div class="block">
+                    <p id="setData">
+                        <b class="header">setData</b><code>Big.setData(name, value)</code></span>
+                    </p>
+                    <p>取回一个localStorage的值</p>
+                    <p><i>备注：这是一个基于HTML5的方法</i></p>
+                    <pre>(
+    name : string,                             <s>// 必填，localStorage名称</s>
+    value : string(HTML5标准中支持任何类型)    <s>// 必填，localStorage的值</s>
+)</pre>
+                    <pre>
+setData('sex', '男性');
+console.log(localStorage.sex);    <s>// '男性'</s></pre>
+                </div>
+                <div class="block">
+                    <p id="getData">
+                        <b class="header">getData</b><code>Big.getData(name)</code></span>
+                    </p>
+                    <p>取回一个localStorage的值</p>
+                    <p><i>备注：这是一个基于HTML5的方法</i></p>
+                    <pre>(
+    name : string       <s>// 必填，localStorage名称</s>
+)</pre>
+                    <pre>
+localStorage.sex = '男性';
+getData('sex');    <s>// '男性'</s>
+</pre>
+                </div>
+                <div class="block">
+                    <p id="delData">
+                        <b class="header">delData</b><code>Big.delData(name)</code></span>
+                    </p>
+                    <p>删除一个localStorage</p>
+                    <p><i>备注：这是一个基于HTML5的方法</i></p>
+                    <pre>(
+    name : string       <s>// 必填，localStorage名称</s>
+)</pre>
+                    <pre>
+localStorage.sex = '男性';
+delData('sex');
+
+getData('sex');    <s>// undefined</s>
+</pre>
+                </div>
+                <div class="block">
+                    <p id="clearData">
+                        <b class="header">clearData</b><code>Big.clearData()</code></span>
+                    </p>
+                    <p>清除所有的localStorage</p>
+                    <p><i>备注：这是一个基于HTML5的方法</i></p>
+                    <pre>
+localStorage.name = '张三';
+localStorage.sex = '男性';
+clearData();
+
+getData('name');       <s>// undefined</s>
+getData('sex');        <s>// undefined</s>
+</pre>
+                </div> -->
+                <div class="block">
+                    <p id="checkIE">
+                        <b class="header">checkIE</b><code>Big.checkIE(ver, mode)</code></span>
+                    </p>
+                    <p>检测浏览器是否为某个IE版本，如果验证通过，则返回<em>true</em>，反之则返回<em>false</em></p>
+                    <pre>(
+    ver : number       <s>// 必填，IE版本号</s>
+    mode : string      <s>// 选填，比较类型（lt：小于/lte：小于等于/gt：大于/gte：大于等于/eq：等于[默认为eq]）</s>
+)</pre>
+                    <pre>
+checkIE(7);            <s>// false</s>
+                </div>
+                <div class="block">
+                    <p id="getSize">
+                        <b class="header">getSize</b><code>Big.getSize(target, options)</code></span>
+                    </p>
+                    <p>获取一个元素的真实占用的宽度及高度，成功后返回一个JSON对象<em>{width, height}</em></p>
+                    <pre>(
+    target : selector,       <s>// 必填，需要获取宽高的元素</s>
+    options : {              <s>// 选填，参数</s>
+    	width : array             <s>// 选填，重定义的宽度计算项目[paddingTop/paddingBottom/borderTopWidth/borderBottomWidth/marginTop/marginBottom/height]</s>
+        height : array            <s>// 选填，重定义的高度计算项目[paddingLeft/paddingRight/borderLeftWidth/borderRightWidth/marginLeft/marginRight/width]</s>
+        preset : json             <s>// 选填，预设的选项：paddingTop/paddingBottom/borderTopWidth/borderBottomWidth/marginTop/marginBottom/height;paddingLeft/paddingRight/borderLeftWidth/borderRightWidth/marginLeft/marginRight/width</s>
+    }</pre>
+                    <pre>
+.box{
+    width:100px;
+    height:150px;
+    border:solid 2px #eee;
+    padding:5px 3px;
+}
+<\div class="box"><\/div>
+
+getSize('.box');             <s>// {
+                                   width : 110,
+                                   height : 164
+                                }</s>
+
+getSize('.box', {
+    width : 50,
+    height : 50
+});                          <s>// {
+                                   width : 60,
+                                   height : 64
+                                }</s></pre>
+                </div>
+                <div class="block">
+                    <p id="getFixed">
+                        <b class="header">getFixed</b><code>Big.getFixed(param, options)</code></span>
+                    </p>
+                    <p>获取一个元素位于屏幕中的绝对位置（9宫格）的样式，成功后返回一个JSON对象<em>{left, right, top, bottom, marginLeft,marginTop} / {left / top}</em></p>
+                    <pre>(
+    param : {                <s>// 必填，元素所在位置的基本参数</s>
+        offset : number,           <s>// 必填，九宫格中的位置</s>
+        attach : boolean,        <s>// 必填，是否附着于屏幕边缘</s>
+        range : number,            <s>// 必填，最小保持的内容范围</s>
+        width : number,            <s>// 必填，元素的宽度</s>
+        height : height            <s>// 必填，元素的高度</s>
+    },
+    options : {              <s>// 选填，根据需要选填相关的附加选项</s>
+        fixed : boolean [false],    <s>// 选填，IE6中是否强制使用fixed样式的结果</s>
+        ease : boolean [false],     <s>// 选填，是否返回应用于缓动动画的结果（基于'absolute'）</s>
+        style : json               <s>// 选填，根据需要选填预设及随带的style属性(属性名称参照原生JS书写)</s>
+    }           
+)</pre>
+                    <pre>getFixed({
+    offset : 5,
+    attach : false,
+    range : 980,
+    width : 500,
+    height : 350
+});                          <s>// {
+                                    left : 50%,
+                                    top : 50%;
+                                    right : 'auto',
+                                    bottom : 'auto',
+                                    marginLeft: -250,
+                                    marginTop: -175
+                                }</s>
+getFixed({
+    offset : 5,
+    attach : false,
+    range : 980,
+    width : 500,
+    height : 350
+}, {
+    fixed : true,
+    style : {
+        width : 100,
+        height : 100,
+        opacity : 1
+    }
+});                          <s>// {
+                                    left : 50%,
+                                    top : 50%;
+                                    right : 'auto',
+                                    bottom : 'auto',
+                                    marginLeft: -250,
+                                    marginTop: -175,
+                                    width : 100,
+                                    height : 100,
+                                    opacity : 1
+                                }</s></pre>
+                </div>
+                <div class="block">
+                    <p id="getEasing">
+                        <b class="header">getEasing</b><code>Big.getEasing(easing)</code></span>
+                    </p>
+                    <p>easing是一个运动算法，在jQuery动画中运用；</p>
+                    <p>预设一个easing方法，如果此方法包含在jQuery中，则返回<em>此方法名</em>，否则返回jQuery内置的<em>'swing'</em>方法</p>
+                    <pre>(
+    easing : string(easing)        <s>// 必填，元素所在位置的基本参数</s>         
+)</pre>
+                    <pre>Big.getEasing('easeInOutQuart')      <s>// 'easeInOutQuart' / 'swing'</s></pre>
+                    <p>当jQuery引用了jquery.easing.min.js后，jquery.easing.min.js中的easing方法会自动保存在 jQuery.easing 集合中，具体的easing name请访问 <a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">http://gsgd.co.uk/sandbox/jquery/easing/</a></p>
+                </div>
+                <div class="block">
+                    <p id="getSelecet">
+                        <b class="header">getSelecet</b><code>Big.getSelecet(data, options)</code></span>
+                    </p>
+                    <p>生成一个下拉列表，并返回</p>
+                    <pre>(
+    data : array([一维/二维])       <s>// 必填，元素所在位置的基本参数 [key&value, key&value]/[[key, value], [key, value]]</s>
+    options : {                    <s>// 选填，根据需要选填相关的附加选项</s>
+        empty : string,                  <s>选填，空白选项的名称</s>
+        prop : {                         <s>选填，元素附加的参数（比如:className等）</s>
+            selected : number (index)/ string             <s>选填，默认选中的索引/值</s>
+        }                      
+    }
+)</pre>
+                    <pre>
+var name = ['张三', '李四', '王五'],
+    year = [
+        ['2015年', '2015'],
+        ['2016年', '2016'],
+        ['2017年', '2017']
+    ];
+
+getSelecet(name, {
+    empty : '选择您的姓名',
+    prop : {
+        selected : 0
+    }
+});
+
+getSelecet(year, {
+    empty : '选择现在的年份',
+    prop : {
+        selected : 2,
+        className : 'nameSelecet'
+    }
+});</pre>
+                </div>
+                <div class="block">
+                    <p id="getQuery">
+                        <b class="header">getQuery</b><code>Big.getQuery(key)</code></span>
+                    </p>
+                    <p>在当前页面的URL中返回某个参数的值并返回一个<em>字符串</em></p>
+                    <pre>(
+    key : sting        <s>// 必填，参数名称</s>
+)</pre>
+                    <pre>
+var url = http://localhost/project/example/?sex=1&name=bill&tel=88808888;
+
+getQuery('name');      <s>// bill</s></pre>
+                </div>
+                <div class="block">
+                    <p id="resetTime">
+                        <b class="header">resetTime</b><code>Big.resetTime(before, after)</code></span>
+                    </p>
+                    <p>修复IE8在某个jQuery动画中失效的bug,如果是IE8则返回<em>after</em>，否则返回<em>before</em></p>
+                    <pre>(
+    before : millisecond        <s>// 必填，实际的时间</s>
+    after : millisecond         <s>// 必填，重置的时间</s>
+)</pre>
+                    <pre>
+resetTime(300, 0);      <s>// IE8: 0</s>
+                        <s>// else: 300</s></pre>
+                </div>
+                <div class="block">
+                    <p id="getQuery">
+                        <b class="header">getQuery</b><code>Big.getQuery(key)</code></span>
+                    </p>
+                    <p>在当前页面的URL中返回某个参数的值并返回一个<em>字符串</em></p>
+                    <pre>(
+    key : sting        <s>// 必填，参数名称</s>
+)</pre>
+                    <pre>
+var url = http://localhost/project/example/?sex=1&name=bill&tel=88808888;
+
+getQuery('name');      <s>// bill</s></pre>
+                </div>
+                <div class="block">
+                    <p id="getZIndex">
+                        <b class="header">getZIndex</b><code>Big.getZIndex([target, parent])</code></span>
+                    </p>
+                    <p>返回大于特定节点style.zIndex值</p>
+                    <pre>(
+    target : selector        <s>// 选填，目标元素，根据目标元素得到兄弟元素，返回大于兄弟节点style.zIndex值</s>
+    parent : selector        <s>// 选填，父级元素，在没有目标元素参数时，可传递父级元素，返回大于父级元素中所有子元素style.zIndex值</s>
+)</pre>
+                    <pre>
+getZIndex(target);      <s>// 12</s>
+                </div>
+                <p>两个参数中必须填写一个，不需要target时可用 null 代替，不需要parent时可不用填写</p>
+                <div class="block">
+                    <p id="getVisibles">
+                        <b class="header">getVisibles</b><code>Big.getVisibles(target, parent)</code></span>
+                    </p>
+                    <p>以数组的形式返回可视化的特定元素节点</p>
+                    <pre>(
+    target : selector        <s>// 选填，目标元素，根据目标元素得到返回兄弟元素，当有父级元素参数时，会在该目标元素的基础上找到该父级元素，并返回不包含该目标元素的子元素的兄弟元素</s>
+    parent : selector        <s>// 选填，父级元素，没有目标元素参数时，将返回父级元素中所有子元素，在有目标元素参数时，会在目标元素的基础上找到该父级元素，并返回不包含目标元素的子元素的兄弟元素</s>
+)</pre>
+                    <pre>
+getVisibles(target);      <s>// [node, node, node]</s>
+</pre>
+                </div>
+                <p>两个参数中必须填写一个，不需要target时可用 null 代替，不需要parent时可不用填写</p>
+                <div class="block">
+                    <p id="getCSS3Name">
+                        <b class="header">getCSS3Name</b><code>Big.getCSS3Name(prop)</code></span>
+                    </p>
+                    <p>针对不同浏览器中的CSS3属性有私有名称，通过此方法返回浏览器中真正的CSS属性名，并以<em>数组/json</em>的形式返回，第一个值为元素JS中的style属性名，第二个值为在CSS样式中的属性名</p>
+                    <pre>(
+    prop : string/array        <s>// 必填，验证的CSS3属性名</s>
+)</pre>
+                    <pre>
+getCSS3Name('animationDelay');      <s>// 'webkitAnimationDelay'</s>
+getCSS3Name(['animationDelay', 'backgroundClip', 'contentClips']);      <s>// {
+                                                                                animationDelay : ['webkitAnimationDelay', '-webkit-animation-delay'],
+                                                                                backgroundClip : ['webkitBackgroundClip', '-webkit-background-clip'],
+                                                                                contentClips : undefined
+                                                                            }</s>
+</pre>
+                </div>
+                <div class="block">
+                    <p id="inViewport">
+                        <b class="header">inViewport</b><code>Big.inViewport(target, options)</code></span>
+                    </p>
+                    <p>检测某个元素是否在窗口的可视范围以内</p>
+                    <pre>(
+    target : selector,                <s>// 选填，被检测的元素</s>
+    options : {
+        wrapper : selector[window],         <s>// 选填，元素的包围元素，会在检测元素本身的时候同时检测包围元素</s>
+        threshold : number[0]               <s>// 选填，阈值，通过阈值扩大检测范围</s>
+    }
+)</pre>
+                </div>
+            </div>
+            <div id="ui">
+                <h2>View <tt>Big.ui</tt> (视图)</h2>
+                <div class="block">
+                    <p id="toggleBlur">
+                        <b class="header"><a href="example/toggleBlur.html" target="_blank">toggleBlur</a></b><code>Big.ui.toggleBlur(id, options)</code></span>
+                    </p>
+                    <p>为屏幕添加中除了目标元素以外的元素添加/移除模糊处理，使用此方法时需要先定义一个ID，通常此ID为一串随机数字，推荐使用Big.getRandom()方法生成。方法中进行模糊的元素保存在coll.elem.blur中。</p>
+                    <p>
+                        <pre>
+(
+    id : string/number       <s>// 必填，数组ID，取消模糊的时候用以查找到对应的元素集合</s>
+    options : {
+        target : selector,       <s>// 选填，目标元素，此值有时则为添加模糊，此值没有时为移除模糊处理</s>
+        callback : function      <s>// 选填，回调方法</s>
+    }
+)</pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="keepFull">
+                        <b class="header"><a href="example/keepFull.html" target="_blank">keepFull</a></b><code>Big.ui.keepFull(target, options)</code></span>
+                    </p>
+                    <p>使某一个元素保持全屏</p>
+                    <p>
+                        <pre>
+(
+    target : selector,     <s>// 必填，应用全屏的元素</s>
+    options : {            <s>// 选填，选项</s>
+        mode : string('x'/'y')       <s>// 选填，全屏的模式(x为横向全屏，y为竖向全屏，默认为全屏)</s>
+        callback : function          <s>// 选填，回调方法</s>
+    }
+)</pre>
+                    </p>
+                    <p><i>特定情况下，IE6出现width:100%;height:100%时会失效，此为修复方式</i></p>
+                </div>
+                <div class="block">
+                    <p id="listSplit">
+                        <b class="header"><a href="example/listSplit.html" target="_blank">listSplit</a></b><code>Big.ui.listSplit(list, number, wrapper[, option])</code></span>
+                    </p>
+                    <p>对一个列表进行分割并放进一个盒子</p>
+                    <p>
+                        <pre>
+(
+    list : selector,       <s>// 必填，列表元素</s>
+    number : number,       <s>// 必填，循环单元个数</s>
+    wrapper : selector        <s>// 必填，包围的盒子</s>
+    options : {            <s>// 选填，选项</s>
+        callback : function          <s>// 选填，回调方法</s>
+    }
+)</pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="hoverFade">
+                        <b class="header"><a href="example/hoverFade.html" target="_blank">hoverFade</a></b><code>Big.ui.hoverFade(control, content[, options])</code></span>
+                    </p>
+                    <p>由一个元素控制另外一个元素的切换显示</p>
+                    <p>
+                        <pre>
+(
+    control ：selector,      <s>// 必填，触发切换的元素</s>
+    content : selector,     <s>// 必填，触发后显示的元素</s>
+    options : {             <s>// 选填，参数</s>
+        speed : millisecond,      <s>// 选填，显示/隐藏的速度</s>
+        onShow : function,        <s>// 选填，显示后执行的回调</s>
+        onHide : function         <s>// 选填，隐藏后执行的回调</s>
+    }
+)</pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="pageScroll">
+                        <b class="header"><a href="example/pageScroll.html" target="_blank">pageScroll</a></b><code>Big.ui.pageScroll(offset[, options])</code></span>
+                    </p>
+                    <p>滚动至页面某处</p>
+                    <p>
+                        <pre>
+(
+    offset ：selector/number,    <s>// 必填，滚动到的位置</s>
+    options : {
+        adjust : number [0],                          <s>// 选填，微调(正负值)</s>
+        speed : number [1000],                        <s>// 选填，滚动速度</s>
+        easing : string (easing ['easeInOutQuart']),  <s>// 选填，缓动效果</s>
+        callback : function(top)                      <s>// 选填，完成后的回调，传值为滚动完成后的top位置</s>
+    }
+)</pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="setFixed">
+                        <b class="header">setFixed</b><code>Big.ui.setFixed(target, absolute)</code></span>
+                    </p>
+                    <p>针对不同的浏览器使用不同的使元素支持fixed浮动的样式('absolute'/'fixed')，完成后返回<em>此元素</em></p>
+                    <pre>(
+    target : selector,         <s>// 必填，应用position('absolute'/'fixed')样式的元素</s>
+    absolute : boolean [false] <s>// 选填，在非IE6中使用是否强制使用position('absolute')样式</s>
+)</pre>
+                </div>
+                <div class="block">
+                    <p id="setPlaceholder">
+                        <b class="header"><a href="example/setPlaceholder.html" target="_blank">setPlaceholder</a></b><code>Big.ui.setPlaceholder(target, value)</code></span>
+                    </p>
+                    <p>在输入元素中设置占位符</p>
+                    <p>
+                        <pre>
+(
+    target ：selector,    <s>// 必填，设置占位符的元素</s>
+    value : string        <s>// 必填，预设的占位符文字</s>
+)</pre>
+                    </p>
+                    <p><i>如果浏览器不支持placeholder属性，则会使用JS进行模拟</i></p>
+                </div>
+                <div class="block">
+                    <p id="insertQRcode">
+                        <b class="header">insertQRcode</b><code>Big.ui.insertQRcode(param)</code></span>
+                    </p>
+                    <p>自动生成一个二维码，并放入容器中</p>
+                    <p>
+                        <pre>
+(
+    param = {               <s>// 必填，参数</s>
+        wrapper ：selector,       <s>// 必填，设置占位符的元素</s>
+        size : number,            <s>// 必填，二维码尺寸</s>
+        text : string             <s>// 必填，要生成的二维码文本</s>
+    }
+)</pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <p id="LazyLoad">
+                        <b class="header"><a href="example/LazyLoad.html" target="_blank">LazyLoad</a></b><code><b class="new">new</b> Big.ui.LazyLoad(target, wrapper)</code></span>
+                    </p>
+                    <p class="info">对图片元素应用延时加载，图片元素必须包含data-lazy属性，值为真正加载的图片路径。</p>
+                    <h4 class="subTitle">参数：</h4>
+<pre>
+(
+    target = array/selector     <s>// 必填，要应用延时加载的图片元素，如果该元素非图片元素，则会自动查找该元素中包含有data-lazy属性图片元素</s>
+    options = {
+        wrapper : selector [window]   <s>// 选填，通常情况下，实例会根据图片是否可见而执行是否要被加载，如果wrapper存在，会先查看wrapper是否可见，其次再看wrapper里面的图片元素是否可见，根据情况而是否加载图片。</s>
+        merge : boolean [false]       <s>// 选填，是会将其它已经被实例延时加载的图片元素添加到本实例操作中，多用于通常被隐藏需要触发的图片元素</s>
+    }
+)</pre>
+<div class="notice">
+    <li>ui.EasySlider、ui.ToggleTab、ui.EasingTab 具有自己内部延时加载方法，故无需为此类型人工加载此方法</li>
+    <li>加载一张图片元素时，有着同样图片路径的其它元素也将会被加载</li>
+    <li>此对象中所包含的再无待加载元素的时候，该对象将会自动销毁</li>
+</div>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_images : array               <s>// 等待被加载的图片元素集合</s>
+_lazyID : string/number       <s>// 为本实例创建一个ID，如果_images的数量大于0，则为一串ID，那么此实例将会被保存在Big.elem.lazy[ID]当中，反之将为undefined，实例化无意义</s>
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+destroy : function()          <s>// 注销这个实例</s>
+loading : function()          <s>// 执行一次加载</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="CycleLoader">
+                        <b class="header"><a href="example/CycleLoader.html" target="_blank">CycleLoader</a></b><code><b class="new">new</b> Big.ui.CycleLoader(param[, options])</code></span>
+                    </h3>
+                    <p class="info">加载动画，通过改变元素的background-position的改变来造成动画的假象</p>
+                    <h4 class="subTitle">参数：</h4>
+<pre>
+(
+    param = {                 <s>// 必填，参数</s>
+        target ：selector,          <s>// 必填，执行动画的对象</s>
+        offset : number,            <s>// 必填，单步偏移单位</s>
+        step : number,              <s>// 必填，偏移总步数</s>
+        speed : millisecond         <s>// 必填，动画速度</s>
+    },
+    options = {               <s>// 选填，选项</s>
+        time : millisecond [200],   <s>// 选填，显示隐藏的</s>
+        onReady : function(self)    <s>// 选填，装载完成后执行的回调</s>
+    }
+)</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+stop : function(callback(self))     <s>// 停止并隐藏动画的回调，callback为回调的参数，callback的参数为self，代表实例本身</s>
+play : function(callback(self))     <s>// 显示并开始动画的回调，callback为回调的参数，callback的参数为self，代表实例本身</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(self)            <s>// 动画实例初始化完成时的方法</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="ToggleTab">
+                        <b class="header"><a href="example/ToggleTab.html" target="_blank">ToggleTab</a></b><code><b class="new">new</b> Big.ui.ToggleTab(control, column[, options])</code></span>
+                    </h3>
+                    <p class="info">标签tab切换</p>
+                    <h4 class="subTitle">参数：</h4>
+<pre>
+(
+    control = selector,    <s>// 必填，控制元素选择器</s>
+    column = selector,     <s>// 必填，内容元素选择器</s>
+    options = {            <s>// 选填，选项</s>
+        event : string(event ['mouseover']),              <s>// 选填，事件名称</s>
+        active : number(index [0])                        <s>// 选填，默认显示的索引</s>
+        delay : number(millisecond [200])                 <s>// 选填，鼠标滑动事件中的事件延时</s>
+        autoplay : boolean([true]),                       <s>// 选填，是否预先切换</s>
+        clear : number(millisecond [100]) / boolean,      <s>// 选填，是否鼠标离开后是否清除样式</s>
+        onReady : function(self),                         <s>// 选填，装载完成后执行的回调</s>
+        onChange : function (prev, next, source)          <s>// 选填，切换后执行的回调，prev代表前一个索引，next代表后一个索引，source代表事件来源</s>
+    }
+)</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_active : number(index)                               <s>// 当前的索引</s>
+_controls : jQuery 选择器                             <s>// 控制元素</s>
+_columns : jQuery 选择器                              <s>// 被控制元素</s>
+_params : json                                        <s>// 其它参数</s>
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+toggleClear : function()                              <s>// 清除当前的切换状态</s>
+toggleTo : function(index, hasCallback[, source])     <s>// 切换到某个索引，index 为索引值，hasCallback为是否执行回调，source为事件来源</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onChange : function(prev, next, source)                <s>// 切换后执行的回调，prev代表上一个索引，next代表为下一个索引，source代表事件来源</s>
+onReady : function(self)                               <s>// 实例初始化完成后的回调，self代表实例本身</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="EasingTab">
+                        <b class="header"><a href="example/EasingTab.html" target="_blank">EasingTab</a></b><code><b class="new">new</b> Big.ui.EasingTab(control, column[, options])</code></span>
+                    </h3>
+                    <p class="info">标签tab缓动切换</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    control = selector,                                <s>// 必填，控制元素选择器</s>
+    column = selector,                                 <s>// 必填，内容栏目元素选择器</s>
+    options = {                                        <s>// 选填，选项</s>
+        event : string(event ['mouseover']),                 <s>// 选填，事件名称</s>
+        active : number(index [0]),                          <s>// 选填，默认显示的索引</s>
+        delay : number(millisecond [200])                    <s>// 选填，鼠标滑动事件中的事件延时</s>
+        mode : string('x'/'y' ['x']),                        <s>// 选填，动画模式，'x'为横向动画，'y'为纵向动画</s>
+        easing : string(easing ['easeInOutQuart']),          <s>// 选填，缓动特效</s>
+        autoplay : boolean([true]),                    <s>// 选填，是否预先切换</s>
+        onReady : function(self),                            <s>// 选填，装载完成后执行的回调</s>
+        onChangeStart : function (current, next, source),    <s>// 选填，切换前执行的回调，current代表当前的索引，next代表为下一个索引，source代表事件来源</s>
+        onChangeEnd : function (current, prev, source)       <s>// 选填，切换后执行的回调，current代表当前的索引，prev代表为上一个索引，source代表事件来源</s>
+    }
+)</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_active : number(index)                                <s>// 当前的索引</s>
+_controls : jQuery 选择器                              <s>// 控制元素</s>
+_columns : jQuery 选择器                               <s>// 被控制元素</s>
+_params : json                                         <s>// 其它参数</s>
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+toggleTo : function(index, hasCallback[, source])      <s>// 切换到某个索引，index 为索引值，hasCallback为是否执行回调，source为事件来源</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(self)                               <s>// 实例初始化完成后的回调，self代表实例本身</s>
+onChangeStart : function(current, next, source)        <s>// 切换前执行的回调，current代表当前的索引，next代表为下一个索引，source代表事件来源</s>
+onChangeEnd : function(current, prev, source)          <s>// 切换后执行的回调，current代表当前的索引，prev代表为上一个索引，source代表事件来源</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="Carousel">
+                        <b class="header"><a href="example/Carousel.html" target="_blank">Carousel</a></b><code><b class="new">new</b> Big.ui.Carousel(wrapper[, options])</code></span>
+                    </h3>
+                    <p class="info">3D滚动展示，使用前请 require('ui.carousel')</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    wrapper = selector,                                 <s>// 必填，滚动展示的UL的包围盒子</s>
+    options = {                                         <s>// 选填，选项</s>
+        speed ：millisecond [500],                              <s>// 选填，滚动速度</s>
+        autoplay : millisecond/boolean [4000],                  <s>// 选填，是否滚动自动，如果不为false，此参数则为滚动间隔时间</s>
+        easing : string (easing ['easeInOutBack']),             <s>// 选填，缓动效果</s>
+        navigation : {                                          <s>// 选填，是否在页面中生成导航实例，如果为false则不生成，如果为true / json格式则生成</s>
+            icon : boolean [flase],                             <s>// 选填，导航实例中是否包含图标元素</s>
+            under : boolean [flase]                             <s>// 选填，导航实例中是否包含背景元素(只有在启用图标元素才能启用背景元素)</s>
+        },
+        pagination : boolean [false],                           <s>// 选填，是否显示分页</s>
+        active : number [0],                                    <s>// 选填，默认显示的索引</s>
+        row : number [4],                                       <s>// 选填，每边列表的数量（包括当前中间列）</s>
+        scale ：number [0.5],                                   <s>// 选填，最左&最右的尺寸的倍数，<= 0.8 && >= 0.2 的范围</s>
+        onReady : function(self),                             <s>// 选填，装载完成后执行的回调</s>
+        onChangeStart : function (current, next, source),     <s>// 选填，运动开始之前执行的回调，传回三个参数（当前索引, 下一个索引, 事件来源）</s>
+        onChangeEnd : function (current, prev, source)        <s>// 选填，运动完成之后执行的回调，传回三个参数（当前索引, 上一个索引, 事件来源）</s>
+    }
+)</pre>
+                    <h4 class="subTitle">内部对象：</h4>
+                    <pre>
+_active : index,                    <s>// 当前位于中间的元素的索引</s>
+_wrapper : jQuery 选择器            <s>// Carousel的外包围层</s>
+_ul : jQuery 选择器                 <s>// Carousel的ul盒子</s>
+_lis : jQuery 选择器                <s>// 所有的列表元素</s>
+_nextBtn : jQuery 选择器           <s>// 下导航按钮元素，需要开启导航按钮</s>
+_prevBtn : jQuery 选择器           <s>// 上导航按钮元素，需要开启导航按钮</s>
+_pagers : jQuery 选择器            <s>// 所有的分页元素，需要分页功能</s>
+_prop : {
+    width : number                        <s>// Carousel的ul盒子宽度</s>
+    height : number,                      <s>// Carousel的ul盒子高度</s>
+    row : 4                               <s>// 两侧各展示的列表数量</s>
+    scale : 0.5                           <s>// 两侧最边上的元素的缩小比例</s>
+    _navigation : boolean/json            <s>// 是否启用进退导航</s>
+    _pagination : boolean                 <s>// 是否启用分页功能</s>
+}
+_params : {
+    speed : 500                         <s>// 动画执行速度</s>
+    autoplay : 3000,                    <s>// 自动播放延时时间</s>
+    easing:  string,                    <s>// 动画缓动效果</s>
+}
+</pre>
+                    <h4 class="subTitle">内部方法：</h4>
+                    <pre>
+startPlay : function()                       <s>// 开始自动播放（必须开启自动播放功能）</s>
+stopPlay : function()                        <s>// 停止自动播放</s>
+playPrev : function()                        <s>// 后退播放</s>
+playPext : function()                        <s>// 前进播放</s>
+playTo : function(index)                     <s>// 轮播索引为index的列表元素至中间</s>
+</pre>
+                    <h4 class="subTitle">外部方法：</h4>
+                    <pre>
+onReady : function(self)                             <s>// 实例初始化完成后的回调，self代表实例本身</s>
+onChangeStart : function(current, next, source)      <s>// 切换前执行的回调，current代表当前的索引，next代表为下一个索引，source代表事件来源</s>
+onChangeEnd : function(current, prev, source)        <s>// 切换后执行的回调，current代表当前的索引，prev代表为上一个索引，source代表事件来源</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="EasySlider">
+                        <b class="header"><a href="example/EasySlider.html" target="_blank">EasySlider</a></b><code><b class="new">new</b> Big.ui.EasySlider(wrapper[, options])</code></span>
+                    </h3>
+                    <p class="info">幻灯片展示</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    wrapper = selector,                                 <s>// 必填，滚动展示的UL的包围盒子</s>
+    options = {                                         <s>// 选填，选项</s>
+        effect : {                                            <s>// 选填，动画效果参数</s>
+            name : string ['fade']                            <s>// 选填，动画效果['fade'/'slide'/'push'/'coverIn'/'coverOut']</s>
+            options : {                                       <s>// 选填，效果参数</s>
+                mode : string ('x'/'y' ['x']),                      <s>// 选填，动画模式，'x'为横向动画，'y'为纵向动画</s>
+                easing : string (easing ['easeInOutQuart']),        <s>// 选填，缓动效果</s>
+                speed ：millisecond [500],                          <s>// 选填，动画速度</s>
+                ratio : float [0.5],                                <s>// 选填，当动画效果为slide时有意义，滑动阻力(不小于0.1，不大于1)</s>
+                align : string 'left',                              <s>// 选填，当动画效果为slide时有意义，对齐模式('left'/'center')</s>
+                column : string/number 'auto',                      <s>// 选填，当动画效果为slide时有意义，单页栏目数量，将自动计算栏目尺寸,默认为自动</s>
+                touch : boolean [false],                            <s>// 选填，当动画效果为slide时有意义，是否在PC端启用触摸滑动（仅支持支持CSS3 transition&transform 的浏览器）</s>
+                loop : boolean/number,                              <s>// 选填，当动画效果为slide时有意义，是否开启循环模式</s>
+            }
+        },
+        autoplay : millisecond/boolean [3000],                <s>// 选填，是否滚动自动，如果不为false，此参数则为滚动间隔时间</s>
+        navigation : {                                        <s>// 选填，是否在页面中生成导航实例，如果为false则不生成，如果为true / json格式则生成</s>
+            icon : boolean [flase],                                 <s>// 选填，导航实例中是否包含图标元素</s>
+            under : boolean [flase]                                 <s>// 选填，导航实例中是否包含背景元素(只有在启用图标元素才能启用背景元素)</s>
+        },
+        pagination : boolean [true],                          <s>// 选填，是否显示分页</s>
+        active : number [0],                                  <s>// 选填，默认显示的索引</s>
+        onReady : function(self),                             <s>// 选填，装载完成后执行的回调</s>
+        onChangeStart : function (current, next, source),     <s>// 选填，运动开始之前执行的回调，传回三个参数（当前索引, 下一个索引, 事件来源）</s>
+        onChangeEnd : function (current, prev, source)        <s>// 选填，运动完成之后执行的回调，传回三个参数（当前索引, 上一个索引, 事件来源）</s>
+    }
+)</pre>
+                    <h4 class="subTitle">内部对象：</h4>
+                    <pre>
+_active: index,                   <s>// 当前中间元素索引</s>
+_wrapper: jQuery 选择器           <s>// EasySlider的外包围层</s>
+_container: jQuery 选择器         <s>// 溢出隐藏盒子</s>
+_ul: jQuery 选择器                <s>// EasySlider的ul盒子</s>
+_lis: jQuery 选择器               <s>// 所有的列表元素</s>
+_loopLis: jQuery 选择器            <s>// 所有的循环列表元素（如果有循环）</s>
+_prevBtn: jQuery 选择器           <s>// 上导航按钮元素</s>
+_nextBtn: jQuery 选择器           <s>// 下导航按钮元素</s>
+_pagers: jQuery 选择器            <s>// 所有的分页元素（如果有分页）</s>
+_params : {
+    autoplay: false/millisecond       <s>// 是否自动播放/间隔时间</s>
+}
+_prop : {
+    length: number                    <s>// 列表总数</s>
+    maxIndex: number                  <s>// 列表最大索引值</s>
+    columnSize: {                     <s>// 第一个盒子的尺寸</s>
+        width : number,                    <s>// 第一个列表元素的占用的宽度</s>
+        height : number                    <s>// 第一个列表元素的占用的高度</s>
+    }
+    wrapSize: {                       <s>// 溢出隐藏盒子的尺寸</s>
+        width : number,                    <s>// 溢出隐藏盒子的占用的宽度</s>
+        height : number                    <s>// 溢出隐藏盒子的占用的高度</s>
+    }
+    navigation: boolean               <s>// 是否启用进退导航</s>
+    pagination: boolean               <s>// 是否启用分页功能</s>
+    hasPagination : boolean           <s>// 是否包含分页(这其实为了兼容早前的'queue'效果做的妥协)</s>
+    effect : json                     <s>// 所有的效果参数</s>
+}
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+slideNext : function(source)                           <s>// 滑动至下一个，source代表滑动类型，默认留空['next']</s>
+slidePrev : function(source)                           <s>// 滑动至上一个，source代表滑动类型，默认留空['prev']</s>
+slideTo : function(index, hasCallback, source)         <s>// 滑动至上一个，index代表滑向的列表索引，hasCallback代表有无回调(onChangeStart & onChangeEnd)，source代表滑动类型</s>
+startPlay : function()                                 <s>// 自动轮播开始（须开启自动播放 autoplay）</s>
+stopPlay : function()                                  <s>// 自动轮播停止</s>
+</pre>
+<div class="notice">
+    <li>EasySlider支持双向绑定</li>
+<pre>
+var sliderA = new Big.ui.EasySlider(...),
+    sliderB = new Big.ui.EasySlider(...);
+
+sliderA.control = sliderB;
+sliderB.control = sliderA;
+</pre>
+</div>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(self)                             <s>// 实例初始化完成后的回调，self代表实例本身</s>
+onChangeStart : function(current, next, source)      <s>// 切换前执行的回调，current代表当前的索引，next代表为下一个索引，source代表事件来源</s>
+onChangeEnd : function(current, prev, source)        <s>// 切换后执行的回调，current代表当前的索引，prev代表为上一个索引，source代表事件来源</s>
+</pre>
+                </div>
+                <p><i>此方法更新于2015-07-03</i></p>
+                <div class="block">
+                    <h3 id="ScrollFollow">
+                        <b class="header"><a href="example/ScrollFollow.html" target="_blank">ScrollFollow</a></b><code><b class="new">new</b> Big.ui.ScrollFollow(wrapper[, options])</code></span>
+                    </h3>
+                    <p class="info">跟随浮动</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+wrapper = selector,                         <s>// 必填，浮动元素</s>
+options = {                                 <s>// 选填，选项</s>
+    ease : boolean [false],                       <s>// 选填，浮动模式(true:缓动浮动/false:固定浮动)</s>
+    attach ：boolean [false],                     <s>// 选填，是否附着于页面宽度</s>
+    offset : number [5],                          <s>// 选填，对应九宫格的位置</s>
+    speed : millisecond [500],                    <s>// 选填，滚动速度</s>
+    range : string (number [Big.size.range])     <s>// 选填，屏幕最小可视宽度,当窗口宽度小于此值时元素始终保持可见</s>
+    onReady : function,                           <s>// 选填，装载完成后执行的回调</s>
+}
+</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_params : {
+    attach : boolean                        <s>// 是否附着于页面宽度</s>
+    ease : boolean                          <s>// 浮动模式(true:缓动浮动/false:固定浮动)</s>
+    offset : 5                              <s>// 对应九宫格的位置</s>
+    range : 1380                            <s>// 屏幕最小可视宽度</s>
+    speed : 500                             <s>// 滚动速度</s>
+},
+_target : jQuery 选择器                     <s>// 被执行滑动的元素</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(self)                    <s>// 初始化完成时执行的回调，self代表实例对象本身</s>
+</pre>
+                </div>
+                <div class="block">
+                    <p id="HtmlSplit">
+                        <b class="header">HtmlSplit</b><code><b class="new">new</b> Big.ui.HtmlSplit(wrapper[, options])</code></span>
+                    </p>
+                    <p>文章形式HTML分割器</p>
+                    <p>
+                        <pre>
+(
+    wrapper = selector,                         <s>// 必填，进行HTML分割的包围盒子</s>
+    options = {                                 <s>// 选填，选项</s>
+        show : boolean [false],                        <s>// 选填，展开的提示文字</s>
+        hide ：boolean [false],                        <s>// 选填，收起的提示文字</s>
+        size : number [5],                             <s>// 选填，分割后显示文字的最小数量</s>
+        speed : millisecond [500],                     <s>// 选填，展开收缩的动画速度</s>
+        easing : string (easing ['easeInOutQuart'])    <s>// 选填，缓动效果</s>
+    }
+)</pre>
+                    </p>
+                </div>
+                <div class="block">
+                    <h3 id="LightGallery">
+                        <b class="header"><a href="example/LightGallery.html" target="_blank">LightGallery</a></b><code><b class="new">new</b> Big.ui.LightGallery(wrapper[, options])</code></span>
+                    </p>
+                    <p class="info">图片查看器，使用前请 require('ui.lightgallery')</h3>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    wrapper = selector,                      <s>// 必填，图片索引范围所在的盒子</s>
+    options = {                              <s>// 选填，选项</s>
+        speed : millisecond [400],                       <s>// 选填，动画速度</s>
+        easing ：string (easing ['easeInOutQuart']),     <s>// 选填，缓动效果</s>
+        loop : boolean [false],                          <s>// 选填，是否可以循环切换</s>
+        onReady : function(self)                         <s>// 选填，装载完成后执行的回调</s>
+        onShow : function(self)                          <s>// 选填，打开窗口后执行的回调</s>
+        onHide : function(self)                          <s>// 选填，关闭窗口后执行的回调</s>
+    }
+)</pre>
+<div class="notice">
+<pre>
+<\div class="wrapper">
+     <\a data-light-path="img.jpg" data-light-desc="desc"><\/a>
+     <\img src="imgSmall.jpg" data-light-path="img.jpg" data-light-desc="desc"> <s>// data-light-path:图片路径，data-light-desc:图片说明</s>
+<\/div></pre>
+</div>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_targets : jQuery 选择器              <s>// 触发弹出的元素集合</s>
+_wrapper : jQuery 选择器              <s>// 弹出层的最外层包围盒子</s>
+_origin : jQuery 选择器               <s>// 弹出层的中间主体盒子</s>
+_container : jQuery 选择器            <s>// 弹出层的内容的包围盒子</s>
+_closeBtn : jQuery 选择器             <s>// 关闭按钮</s>
+_mask : jQuery 选择器                 <s>// 弹出层的遮罩层</s>
+_imageBox : jQuery 选择器             <s>// 图片包围盒子</s>
+_descBox : jQuery 选择器              <s>// 描述包围盒子</s>
+_desc : jQuery 选择器                 <s>// 描述文字包围盒子</s>
+_params : 参数集合                    <s>// 参数集合</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : funtion(self)               <s>// 选填，构建完后执行的回调，self代表实例对象本身</s>
+onShow : function(self)               <s>// 选填，完全打开弹出层后的回调，self代表实例对象本身</s>
+onHide : function(self)               <s>// 选填，完全关闭弹出层后的回调，self代表实例对象本身</s>
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+zoomShow : function(index)                       <s>// 弹出图片查看器，并加载索引的图片，index代表索引值</s>
+zoomHide : function()                            <s>// 关闭此图片查看器</s>
+imageLoad : funtion(index)                       <s>// 加载某个索引的图片，需在查看器弹出为状态下使用，index代表索引值</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="LightPopup">
+                        <b class="header"><a href="example/LightPopup.html" target="_blank">LightPopup</a></b><code><b class="new">new</b> Big.ui.LightPopup(content[, options])</code></span>
+                    </h3>
+                    <p class="info">构建一个弹出框</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    content = DOM/html/text/selector    <s>// 必填，打开弹出层所展现的内容</s>
+    options = {
+        speed : millisecond [400],      <s>// 选填，弹窗展示/关闭的速度</s>
+        stype : string,                 <s>// 选填，独立样式名</s>
+        close : {                       <s>// 选填，关闭按钮参数</s>
+            icon : boolean [flase],           <s>// 选填，是否包含按钮图标元素</s>
+            under : boolean [flase]           <s>// 选填，是否包含按钮背景元素(只有在启用图标元素才能启用背景元素)</s>
+        },
+        width : number [200],           <s>// 选填，弹窗打开的宽度</s>
+        height : number [200],          <s>// 选填，弹窗打开的高度</s>
+        onReady : funtion,              <s>// 选填，构建完后执行的回调</s>
+        onShow : function,              <s>// 选填，完全打开弹出层后的回调</s>
+        onHide : function,              <s>// 选填，完全关闭弹出层后的回调</s>
+        onVisible : function,           <s>// 选填，当内容元素可见时的回调</s>
+        onPopUp : function,             <s>// 选填，开始打开弹出层时的回调</s>
+        onPopOff : function,            <s>// 选填，开始关闭弹出层时的回调</s>
+    }
+)</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_wrapper : jQuery 选择器              <s>// 弹出层的最外层包围盒子</s>
+_origin : jQuery 选择器               <s>// 弹出层的中间主体盒子</s>
+_container : jQuery 选择器            <s>// 弹出层的内容的外包围盒子</s>
+_content : jQuery 选择器              <s>// 弹出层的内容的内包围盒子</s>
+_closeBtn : jQuery 选择器             <s>// 关闭按钮</s>
+_mask : jQuery 选择器                 <s>// 弹出层的遮罩层</s>
+_params : 参数集合                    <s>// 参数集合</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : funtion(self)               <s>// 选填，构建完后执行的回调，self代表实例对象本身</s>
+onShow : function(self)               <s>// 选填，完全打开弹出层后的回调，self代表实例对象本身</s>
+onHide : function(self),              <s>// 选填，完全关闭弹出层后的回调，self代表实例对象本身</s>
+onVisible : function(self)            <s>// 选填，当内容元素可见时的回调，self代表实例对象本身</s>
+onPopUp : function(self)              <s>// 选填，开始打开弹出层时的回调，self代表实例对象本身</s>
+onPopOff : function(self)             <s>// 选填，开始关闭弹出层时的回调，self代表实例对象本身</s>
+onAppend : function(content, self)    <s>// 选填，插入内容时的回调，content代表插入的内容，self代表实例对象本身</s>
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+show : funtion(target)                           <s>// 显示此弹窗，target代表触发此弹窗的按钮</s>
+toggle : function()                              <s>// 关闭此弹窗</s>
+setContent : function(filler[, width, height])   <s>// 更新插入填充内容。filler(必填) : DOM/html/text/selector, width&height(选填)：内容的所占的尺寸</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="ChapterTrun">
+                        <b class="header"><a href="example/ChapterTrun.html" target="_blank">ChapterTrun</a></b><code><b class="new">new</b> Big.ui.ChapterTrun(item[, options])</code></span>
+                    </h3>
+                    <p class="info">锚链接形式的页面滚动，此方法基于 Big.ui.pageScroll 方法</p>
+                    <h4 class="subTitle">参数：</h4>
+<pre>
+(
+    item = [                 <s>// 必填，锚项目</s>
+        {
+            catalog : selector,                            <s>// 必填，锚点链接</s>
+            chapter : selector,                            <s>// 必填，锚点位置</s>
+            adjust : number [0]                            <s>// 选填，微调(正负值)</s>
+            speed : number (millisecond [1000])            <s>// 选填，滚动速度</s>
+            adjust : string (easing ['easeInOutQuart'])    <s>// 选填，缓动效果</s>
+            callback : function(top)                       <s>// 选填，完成后的回调，传值为滚动完成后的top位置</s>
+        }
+    ],            
+    options = {              <s>// 选填，替补item的公共选项，优先会应用使用item里的独立参数，如果item里的独立参数中没有某项则会使用此参数对应的那项替补，如果两者皆无，则使用Big.ui.pageScroll 方法中的默认选项。</s>
+        adjust : number [0]                            <s>// 选填，微调(正负值)</s>
+        speed : number (millisecond [1000])            <s>// 选填，滚动速度</s>
+        adjust : string (easing ['easeInOutQuart'])    <s>// 选填，缓动效果</s>
+        callback : function(top)                       <s>// 选填，完成后的回调，传值为滚动完成后的top位置</s>
+    }
+)</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_targets : array                  <s>// 锚链接及其参数的集合</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(self)                  <s>// 初始完成时进行的回调，self代表实例对象本身</s>
+onChange : function(index)                <s>// 锚改变时的回调，index为当前的锚索引</s>
+</pre>
+                </div>
+<!--                 <div class="block">
+                    <p id="Swiper">
+                        <b class="header"><a href="http://www.idangero.us/swiper/demos/" target="_blank">Swiper</a></b><code><b class="new">new</b> Big.ui.Swiper(wrapper[, options])</code></span>
+                    </p>
+                    <p>构建一样触摸滑屏组件（仅支持CSS3）</p>
+                    <p>此组件根据Swiper修改而来，剔除了部分不需要的功能，可查看其官网：<a href="http://www.idangero.us/swiper/" target="_blank">http://www.idangero.us/swiper/</a></p>
+                    <p>此方法的API：<a href="Swiper_API.html" target="_blank">Swiper_API.html</a></p>
+                </div> -->
+            </div>
+            <div id="component">
+                <h2>Component <tt>Big.com</tt> (组件)</h2>
+                <div class="block">
+                    <h3 id="DatePicker">
+                        <b class="header"><a href="example/DatePicker.html" target="_blank">DatePicker</a></b><code><b class="new">new</b> Big.com.DatePicker(target[, options])</code></span>
+                    </h3>
+                    <p class="info">日历插件</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    target = selector (input)/ null,                  <s>// 必填，日历输入框</s>
+    options = {                                       <s>// 选填，选项</s>
+        wrapper ：selector [document.body],                 <s>// 选填，日历插件的包围盒子</s>
+        start : year [this year],                           <s>// 选填，开始年份</s>
+        end : year [next year]                              <s>// 选填，结束年份,</s>
+        history : boolean [false]                           <s>// 选填，是否可以选择历史日期,</s>
+        hour : string('0-23')/array([0,1,2])/boolean[flase] <s>// 选填，是否选择时间</s>
+        onReady : function(self)                            <s>// 日历实例装载完成时的回调，self代表实例对象本身</s>
+        onShow : function(self)                             <s>// 日历实例显示后的回调，self代表实例对象本身</s>
+        onHide : function(self)                             <s>// 日历实例关闭后的回调，self代表实例对象本身</s>
+        onInput : function(date)                            <s>// 选择日期完成时的回调，date为返回输入的时间/日期</s>
+    }
+)</pre>
+                <h4 class="subTitle">内部对象：</h4>
+                <pre>
+_params : {                          <s>// 其它参数</s>
+    _history : boolean                   <s>// 是否启用历史日期</s>
+    _hour : boolean                      <s>// 是否可以选择小时</s>
+}
+_target : jQuery 选择器              <s>// 初始时绑定的输入框</s>
+_wrapper : jQuery 选择器             <s>// 日历放置的盒子，默认为$(document.body)</s>
+_input : jQuery 选择器               <s>// 当前触发的输入框</s>
+                </pre>
+                <h4 class="subTitle">内部方法：</h4>
+                <pre>
+addTarget : function(target)         <s>// 增加绑定的输入框，target : selector</s>
+closePicker : function()             <s>// 关闭日历实例</s></pre>
+                <h4 class="subTitle">外部方法（参数中）：</h4>
+                <pre>
+onReady : function(self)         <s>// 日历实例装载完成时的回调，self代表实例对象本身</s>
+onShow : function(self)          <s>// 日历实例显示后的回调，self代表实例对象本身</s>
+onHide : function(self)          <s>// 日历实例关闭后的回调，self代表实例对象本身</s>
+onInput : function(time)         <s>// 选择日期完成时的回调，time为返回输入的时间/日期</s></pre>
+                </div>
+                <div class="block">
+                    <h3 id="ScrollTop">
+                        <b class="header"><a href="example/ScrollTop.html" target="_blank">ScrollTop</a></b><code><b class="new">new</b> Big.com.ScrollTop(wrapper[, options])</code></span>
+                    </h3>
+                    <p class="info">生成一个滚动到顶部的按钮</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    wrapper = selector,                           <s>// 必填，插入向上按钮的外包围盒子</s>
+    options = {                                   <s>// 选填，选项</s>
+        easing ：string (easing ['easeInOutQuart']),          <s>// 选填，缓动效果</s>
+        mode : number [1],                                    <s>// 选填，显示模式(0:离开顶部位置时显示&隐藏/1:滚动一屏时显示&隐藏/2:永远保持可见状态)</s>
+        speed : number (millisecond [500]),                   <s>// 选填，滚动动画时间</s>
+        icon : boolean [true],                                <s>// 选填，是否包含图标</s>
+        under : boolean [false],                              <s>// 选填，是否包含背景</s>
+        text : string [undefined],                            <s>// 选填，插入的文字</s>
+        style : string [undefined],                           <s>// 选填，独立样式名</s>
+        insert : sring ['append']                             <s>// 选填，元素插入方式('append'/'prepend'/'after'/'before')</s>,
+        autohide : number(millisecond [300])/boolean [false]  <s>// 选填，是否开启自动隐藏，如果为数字，则为自动隐藏的延时时间，如果为true，则默认时间为4000毫秒延时，如果为false则不开启此功能</s>
+    }
+)</pre>
+<h4 class="subTitle">外部对象：</h4>
+<pre>
+_target : jQuery 选择器                            <s>// 生成后的按钮</s>
+_wrapper : jQuery 选择器                           <s>// 按钮所在的外包围盒子</s>
+_params : json                                     <s>// 组件中的其它参数</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(target, self)                   <s>// 按钮生成完成后执行的回调，target代表生成的按钮，self代表组件本身</s>
+</pre>
+                </div>
+<!--                 <div class="block">
+                    <p id="ShareTips">
+                        <b class="header">ShareTips</b><code><b class="new">new</b> Big.com.ShareTips(target[, options])</code></span>
+                    </p>
+                    <p>构建一个分享提示器</p>
+                    <p>
+                        <pre>
+(
+    target : selector,            <s>// 必填，控制提示显示的元素</s>
+    options : {                   <s>// 选填，选项</s>
+        speed : millisecond [300]      <s>// 选填，显示隐藏过渡时间</s>
+    }
+)</pre>
+                    </p>
+                </div> -->
+            </div>
+            <div id="extend">
+                <h2>Extend <tt>Big.ext</tt> (扩展)</h2>
+                <div class="block">
+                    <h3 id="AjaxForm">
+                        <b class="header"><a href="example/AjaxForm.html" target="_blank">AjaxForm</a></b><code><b class="new">new</b> Big.ext.AjaxForm(element, handler[, options])</code></span>
+                    </h3>
+                    <p class="info">构建一个AJAX表单</p>
+                    <h4 class="subTitle">参数：</h4>
+<pre>
+(
+    element = [             <s>// 必填，元素参数</s>
+        {
+            tag : string ('input'/'select'/'textarea'),     <s>// 必填，元素标签类型</s>
+            title : string,                                 <s>// 选填，项目名称</s>
+            notice : string,                                <s>// 选填，验证不通过时的提示语,require为false时无意义</s>
+            require : boolean/regex,                        <s>// 选填，是否为必须项,为true时验证是否为空,为regex时根据正则表达式进行验证</s>
+            prop : {
+                name : string                                    <s>// 必填，名称</s>
+                type : string                                    <s>// 必填，类型</s>
+                value : string                                   <s>// 选填，默认值</s>
+                option : array                                   <s>// 选填，在类似于 select/checkbox/radio时，需要这项为其赋值</s>
+                ......更多                                       <s>// 更多</s>
+            }
+        }
+    ],
+    handler = {             <s>// 必填，提交事件及参数</s>
+        event : function(xhr),        <s>// 选填，提交事件，返回新的xhr参数</s>
+        xhr : {                       <s>// 必填，ajax事件的固定参数，AJAX所需要的参数，没有时事件不回传参数</s>
+            url : string (url)                                          <s>// 必填，提交动作的URL地址，不要加任何参数及"?"号</s>
+            type : string ('POST'/'GET')                                <s>// 必填，提交动作的方法</s>
+            data : json                                                 <s>// 必填，跟随url的参数</s>
+            dataType : string('json'/'jsonp'/'text','html','xml')       <s>// 必填，返回的数据类型，如果为false则使用传统表单方式提交</s>
+        }
+    },
+    options = {             <s>// 选填，选项</s>
+        style : string,           <s>// 选填，附加样式名</s>
+        submit : json,            <s>// 选填，提交按钮的属性</s>
+        reset : json,             <s>// 选填，重置提交按钮的属性，如果无此项则无重置按钮</s>
+        onReady : function        <s>// 表单生成完成后执行的回调</s>
+    }
+)</pre>
+<div class="notice">
+    <li>每个元素都必须有prop.name参数</li>
+    <li>select/textarea元素不能有prop.type参数，input必须有prop.type参数</li>
+    <li>select元素必须有prop.options参数，此参数类型为数组/二维数组，如果为二维数组，则数组第一个值为名称，第二个值为值</li>
+    <li>input[type="checkbox"]/input[type="radio"]元素必须有prop.value参数，此参数类型为数组/二维数组，如果为二维数组，则数组第一个值为名称，第二个值为值</li>
+    <li>select的默认值为prop.selected:索引/对应值</li>
+    <li>[type="checkbox"]/input[type="radio"]默认值为prop.checked:索引/对应值/数组</li>
+    <li>所有require为真的元素必须填写notice参数</li>
+    <li>prop参数一定要遵守html时面的属性，不应该有的属性一定不能有，所有属性名都是原生JS的属性名，如：class => className, maxlength => maxLength</li>
+</div>
+<h4 class="subTitle">示例：</h4>
+<pre>
+<s>// select 1</s>
+{
+    tag : 'select',
+    prop : {
+        options : [2013, 2014, 2015]
+    },
+    selected : '2013'
+}
+
+<s>// select 2</s>
+{
+    tag : 'select',
+    prop : {
+        options : [2013, 2014, 2015]
+    },
+    selected : 0
+}
+
+<s>// select 3</s>
+{
+    tag : 'select',
+    prop : {
+        options : [
+            [2013, 13],
+            [2014, 14],
+            [2015, 15]
+        ]
+    },
+    selected : 0
+}
+
+<s>// input[type="checkbox"] 1</s>
+{
+    tag : 'input',
+    prop : {
+        type : 'checkbox',
+        options : [
+            [2013, 13],
+            [2014, 14],
+            [2015, 15]
+        ],
+        checked : ['13', '15']
+    }
+}
+
+<s>// input[type="checkbox"] 2</s>
+{
+    tag : 'input',
+    prop : {
+        type : 'checkbox',
+        options : [2013, 2014, 2015],
+        checked : '2014'
+    }
+}
+
+<s>// input[type="radio"] 3</s>
+{
+    tag : 'input',
+    prop : {
+        type : 'radio',
+        options : [
+            [2013, 13],
+            [2014, 14],
+            [2015, 15]
+        ],
+        checked : '14'
+    }
+}
+<p>// selected/checked为数字时代表索引，为字符串时代表值</p>
+</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_box : {
+    _action : jQuery 选择器            <s>// 放置提交元素的盒子</s>
+    name : jQuery 选择器               <s>// 放置元素prop.name为name的盒子</s>
+}
+_content : jQuery 选择器               <s>// 所有放置元素的盒子的盒子</s>
+_elem : {
+    _submit : jQuery 选择器            <s>// 提交按钮</s>
+    _reset : jQuery 选择器             <s>// 重置按钮</s>
+    name : jQuery 选择器               <s>// 生成完成后prop.name为name的元素</s>
+}
+_form : jQuery 选择器                  <s>// 生成的form表单</s>
+</pre>
+<h4 class="subTitle">外部方法（参数中）：</h4>
+<pre>
+onReady : function(form, self)        <s>// 表单生成完成后执行的回调，form代表生成的表单，self代表组件本身</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="DragAPI">
+                        <b class="header">DragAPI</b><code><b class="new">new</b> Big.com.DragAPI(wrapper[, options])</code></span>
+                    </h3>
+                    <p class="info">生成一个拖拽事件入口，可用于单指操作</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    wrapper = selector,                        <s>// 必填，插入向上按钮的外包围盒子</s>
+    hanlder = {
+        onReady : function(self)                    <s>// 选填，实例初始化完成时执行的回调，self代表实例本身</s>
+        onDragStart : function(status)              <s>// 必填，拖拽事件开始时执行的回调，status代表回传的参数</s>
+        onDragMove : function(status)               <s>// 必填，拖拽移动时执行的回调，status代表回传的参数</s>
+        onDragEnd : function(status)                <s>// 必填，拖拽结束时执行的回调，status代表回传的参数</s>
+        onDragCancel : function(status)             <s>// 必填，拖拽取消时执行的回调，status代表回传的参数</s>
+    },
+    options = {                                <s>// 选填，选项</s>
+        mode : string ('x'/'y' ['x'])                <s>// 选填，预定的滑动方向</s>
+    }
+)</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_target : jQuery 选择器                        <s>// 被绑定触摸事件的元素</s>
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+bindEvent : function(type)                     <s>// 对触摸事件的元素进行事件绑定与解绑定，type为'on'/'off'</s>
+</pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(self)                       <s>// 选填，实例初始化完成时执行的回调，self代表实例本身</s>
+onDragStart : function(status)                 <s>// 必填，拖拽事件开始时执行的回调，status代表回传的参数</s>
+onDragMove : function(status)                  <s>// 必填，拖拽移动时执行的回调，status代表回传的参数</s>
+onDragEnd : function(status)                   <s>// 必填，拖拽结束时执行的回调，status代表回传的参数</s>
+onDragCancel : function(status)                <s>// 必填，拖拽取消时执行的回调，status代表回传的参数</s>
+</pre>
+                </div>
+                <div class="block">
+                    <h3 id="WechatAPI">
+                        <b class="header">WechatAPI</b><code><b class="new">new</b> Big.ext.WechatAPI(param[, options])</code></span>
+                    </h3>
+                    <p class="info">在微信浏览中实现分享功能定制 <a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html" target="_blank">微信JS-SDK</a>，require('ext.wechatapi') 文件，文件包含了微信JS-SDK，必要时请与技术对接，通常一个页面只允许实例化一次，此方法只适应用于微信移动端APP。</p>
+                    <h4 class="subTitle">参数：</h4>
+                    <pre>
+(
+    param = {                                                               <s>// 必填，参数</s>
+        xhr : {                                                                   <s>// 必填，ajax拉取微信身份验证信息的参数</s>
+            url : string ['/'],                                                         <s>ajax请求权限的url</s>
+            type : string('GET'/'POST') ['GET'],                                        <s>ajax请求权限的方式</s>
+            data : json,                                                                <s>附带的url参数</s>
+            dataType : string('json'/'jsonp'/'xml'/'text'/'html'/'script') ['json']     <s>返回的数据格式</s>
+        },
+        cfg : {                                                                   <s>// 必填，要分享的信息</s>
+            title : string [页面标题],                                                  <s>// 分享的标题，为空时会自动读取页面标题</s>
+            desc : string [meta[name="descripton"].content],                            <s>// 分享的描述，为空时会自动读取页面中 meta[name="descripton"] 标签的content</s>
+            link : string(url) [当前页面地址],                                          <s>// 分享的链接地址</s>
+            imgUrl : path/url                                                           <s>// 分享图片的封面图片（相对外径/绝对路径）</s>
+        },
+        tips : {                                                                  <s>// 选填，分享提示参数，如果有此项则自动生成分享提示</s>
+            target : selector,                                                          <s>// 必填，触发显示分享提示的按钮</s>
+            speed : millisecond [300]                                                   <s>// 选填，显示/关闭分享提示的速度</s>
+        }
+    },
+    options = {                                                             <s>// 选填，选项</s>
+        api : array,                                                              <s>// 选填，所需要的API列表，默认的有['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'showOptionMenu', 'hideOptionMenu', 'hideMenuItems', 'showMenuItems', 'hideAllNonBaseMenuItem', 'showAllNonBaseMenuItem']</s>
+        menu : boolean [true],                                                    <s>// 选填，是否显示选项菜单</s>
+        item : {                                                                        <s>// 选填，是否有重置按钮</s>
+            base : boolean [false],                                                     <s>// 选填，是否隐藏所有基本类列表，ture为显示，false为隐藏</s>
+            hide : array,                                                               <s>// 选填，执行隐藏的菜单列表</s>
+            show : array                                                                <s>// 选填，执行显示的菜单列表，默认中包含的有['menuItem:share:appMessage', 'menuItem:share:timeline', 'menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:favorite']</s>
+        },
+        onReady : function(self)                                                  <s>// 选填，初始化时执行的回调</s>
+    }
+)</pre>
+<h4 class="subTitle">内部对象：</h4>
+<pre>
+_prop : json                                                                <s>// 一些基本参数</s>
+tipser : {                                                                  <s>// 构建的分享提示（如果有）</s>
+    _target : jQuery 选择器                                                       <s>// 触发显示提示的按钮</s>
+    _tips : jQuery 选择器                                                         <s>// 分享提示</s>
+    bindEvent ： function(target)                                                 <s>// 添加一个触发按钮</s>
+    toggle ： function(type)                                                      <s>// 显示&隐藏揭示器 type : 'in'/'out'</s>
+}
+</pre>
+<h4 class="subTitle">内部方法：</h4>
+<pre>
+pushState : function(options)                                               <s>// 重新拉取身份，并重新绑定分享内容</s>
+<pre>
+(
+    options = {
+        cfg : json,
+        xhr : json,
+        api : array,
+        callback : function
+    };  <s>通常情况下xhr、api、callbcak为选填项，cfg为必填项目（因为主要目的就是为了修改分享的内容，不然没有意义），cfg的参数皆为选填项！</s>
+)</pre></pre>
+<h4 class="subTitle">外部方法：</h4>
+<pre>
+onReady : function(self)                                                    <s>// API初始化后执行的回调，self代表本身</s>
+</pre>
+                </div>
+            </div>
+            <div id="changelog">
+                <h2>更新日志 (Change Log)</h2>
+                <h4>2015-08-14 (1.0.0)</h4>
+                <ul>
+                    <li>版本1.0.0发布</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

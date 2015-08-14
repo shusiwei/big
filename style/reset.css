@@ -1,0 +1,83 @@
+@charset "utf-8";
+/*
+ * reset
+ */
+*{font-family:"Microsoft Yahei", Tahoma;}
+body,html,h1,h2,h3,h4,h5,h6,p,em,i,form,ul,li,dl,dt,dd{padding:0;margin:0;
+    -webkit-text-size-adjust:none;
+    -moz-text-size-adjust:none;
+    -ms-text-size-adjust:none;
+    text-size-adjust:none;
+}
+body{font-size:12px;width:100%;}
+em,i,b{font-style:normal;font-weight:normal;text-decoration:none;}
+ul,li{list-style:none;}
+h3{font-size:14px;}
+a{text-decoration:none;outline:none;cursor:pointer;}
+a:hover{}
+a img{border:none;display:block;}
+input[type="submit"],input[type="button"],button{cursor:pointer;padding:0;}
+input[type="text"],input[type="email"],input[type="number"],input[type="password"]{padding:0 0 0 3px;}
+:focus,input,select,textarea,button{outline:none;}
+textarea{resize:none;}
+
+/* 
+ * html5元素
+ */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;margin:0;padding:0;}
+
+/*
+ * basic
+ */
+
+/* 带有换行的连续性盒子 */
+.fz{font-size:0;}
+
+.f22{font-size:22px;}
+
+/* 14px字体 */
+.f14{font-size:14px;}
+
+/* 16px字体 */
+.f16{font-size:16px;}
+
+/* br属性 */
+br{display:inline;line-height:20px;}
+
+/* 溢出部分隐藏 */
+.of{overflow:hidden;}
+
+/* 左右浮动 */
+.fl,.FL{float:left;}
+.fr,.FR{float:right;}
+
+/* 左右浮动后清除浮动 */
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+
+/* 加粗 */
+.b{font-weight:bold;}  /* 加粗 */
+
+/* 斜体 */
+.i{font-style:italic;} 
+
+/* 下划线 */
+.u,a.detail:hover{text-decoration:underline;} 
+
+/* 删除线 */
+.o{text-decoration:overline;}
+
+/*大写英文字符*/ 
+.upc{text-transform:uppercase;} 
+
+/* 带有图片Box */
+.img,.img img{display:block;overflow:hidden;}
+
+/* 空白背景 */
+.spacer{background:url("spacer.gif") repeat 0 0;display:block;}
+
+/* 过渡 */
+.tt{transition:all 0.2s ease-in-out;-webkit-transition:all 0.2s ease-in-out;}
+
+/* 隐藏商桥 */
+ins#qiao-wrap,#LR_Flash,#LRdiv0,#LRdiv1{display:none;width:0;height:0;overflow:hidden;visibility:hidden;}
