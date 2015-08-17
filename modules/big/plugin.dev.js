@@ -1,5 +1,5 @@
 /*
- * name : bajs plugin
+ * name : Big Plugin
  * author : shusiwei
  * data : 2015/08/14
  * version : 1.0 beta
@@ -1813,7 +1813,6 @@ define(function(require) {
 
                     if (Big.isType('string', opt.effect)) {
                         switch (opt.effect) {
-                            case 'queue' :
                             case 'slide' :
                             case 'push' :
                             case 'coverIn' :
@@ -1828,7 +1827,6 @@ define(function(require) {
                         };
                     } else if (Big.isType('json', opt.effect)) {
                         switch (opt.effect.name) {
-                            case 'queue' :
                             case 'slide' :
                             case 'push' :
                             case 'coverIn' :
@@ -1847,7 +1845,6 @@ define(function(require) {
 
                     switch (effectName) {
                         case 'slide' :
-                        case 'queue' :
                             effect = _prop.effect = {
                                 name : effectName,
                                 type : 'slide',
@@ -1925,7 +1922,6 @@ define(function(require) {
                             $ul.addClass('-easy-slider-effect-'+ effect.name +'-'+ effect.opt.mode);
                             break;
 
-                        case 'queue' :
                         case 'slide' :
                             fx = effectsLib.slide(effect.opt);
                             $ul.addClass('-easy-slider-effect-'+ effect.name +'-'+ effect.opt.mode +' clearfix');
@@ -1963,7 +1959,7 @@ define(function(require) {
 
                             $pagers = _self._pagers = $pagination.find('a');
                             $wrapper.append($pagination);
-                        })(_prop.pagination && effect.name !== 'queue'),
+                        })(_prop.pagination),
                         cerateCtrl = (function(hasNavigation) {
                             if (!hasNavigation) return false;
 
